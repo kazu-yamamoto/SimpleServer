@@ -19,11 +19,11 @@ import System.Environment (getArgs)
 
 main = do
   listenSock <- startListenSock
-  forever $ do    
+  forever $ do
     (sock, _) <- accept listenSock
     forkIO $ worker sock
 
-  
+
 startListenSock :: IO Socket
 startListenSock = do
   args <- getArgs
@@ -40,7 +40,7 @@ startListenSock = do
   return listenSock
   where
     listenQueueLength :: Int
-    listenQueueLength = 8192 
+    listenQueueLength = 8192
 
 
 worker :: Socket -> IO ()
@@ -59,29 +59,28 @@ worker sock = loop expectedRequestLength
 requestSize :: Int
 requestSize = 2000
 
--- REPLY   
+-- REPLY
 reply :: ByteString
 reply = B.append fauxHeader fauxIndex
- 
+
 replyLen :: Int
-replyLen = B.length reply 
+replyLen = B.length reply
 
 fauxHeader :: ByteString
 fauxHeader = pack s
   where
     s = "HTTP/1.1 200 OK\r\nDate: Tue, 09 Oct 2012 16:36:18 GMT\r\nContent-Length: 151\r\nServer: Mighttpd/2.8.1\r\nLast-Modified: Mon, 09 Jul 2012 03:42:33 GMT\r\nContent-Type: text/html\r\n\r\n"
- 
+
 fauxIndex :: ByteString
 fauxIndex = pack s
   where
     s = "<html>\n<head>\n<title>Welcome to nginx!</title>\n</head>\n<body bgcolor=\"white\" text=\"black\">\n<center><h1>Welcome to nginx!</h1></center>\n</body>\n</html>\n"
- 
- 
+
+
 -- EXPECTED REQUEST
-expectedRequest :: ByteString    
+expectedRequest :: ByteString
 expectedRequest =
   pack "GET / HTTP/1.1\r\nHost: 10.12.0.1:8080\r\nUser-Agent: weighttp/0.3\r\nConnection: keep-alive\r\n\r\n"
- 
+
 expectedRequestLength :: Int
 expectedRequestLength = B.length expectedRequest
- 
