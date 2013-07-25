@@ -1,0 +1,22 @@
+Run with "program 8080 +RTS -qa -A32m -N16" on Linux
+
+About 300000 req/s is the limit of 1Gpbs.
+
+| Program                 | num cores | throughput (requests/second) |
+| SimpleServer            |         1 |                       111952 |
+| SimpleServer            |         2 |                       170034 |
+| SimpleServer            |         4 |                       297759 |
+| SimpleServer            |         8 |                       298457 |
+| SimpleServerByteString  |         1 |                        77208 |
+| SimpleServerByteString  |         2 |                       151688 |
+| SimpleServerByteString  |         4 |                       295159 |
+| SimpleServerByteString  |         8 |                       296325 |
+| SimpleServerByteString2 |         1 |                        78432 |
+| SimpleServerByteString2 |         2 |                       146548 |
+| SimpleServerByteString2 |         4 |                       296241 |
+| SimpleServerByteString2 |         8 |                       296951 |
+| SimpleServerByteString3 |         1 |                        77088 |
+| SimpleServerByteString3 |         2 |                       123487 |
+| SimpleServerByteString3 |         4 |                       266813 |
+| SimpleServerByteString3 |         8 |                       281416 |
+
