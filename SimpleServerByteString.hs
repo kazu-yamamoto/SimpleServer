@@ -1,7 +1,7 @@
 {-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE CPP, ForeignFunctionInterface #-}
 
-import Control.Concurrent (forkIO, threadWaitRead, threadWaitWrite)
+import Control.Concurrent (forkIO, threadWaitWrite)
 import Control.Monad (when, forever, liftM)
 import qualified Data.ByteString as B
 import Data.ByteString.Char8 (ByteString, pack)
@@ -11,12 +11,13 @@ import Foreign.C.Types
 import Network.Socket (Socket(..), SocketType(..), AddrInfoFlag(..),
                        SocketOption(..), accept, addrAddress, addrFamily,
                        addrFlags, bindSocket, defaultProtocol, defaultHints,
-                       fdSocket, getAddrInfo, listen, setSocketOption, socket)
+                       getAddrInfo, listen, setSocketOption, socket)
 import Network.Socket.Internal (throwSocketErrorIfMinus1RetryMayBlock)
 import Network.Socket.ByteString (recv)
 import System.Environment (getArgs)
 
 
+main :: IO ()
 main = do
   listenSock <- startListenSock
   forever $ do
