@@ -60,9 +60,6 @@ requestSize = 2000
 reply :: ByteString
 reply = B.append fauxHeader fauxIndex
 
-replyLen :: Int
-replyLen = B.length reply
-
 fauxHeader :: ByteString
 fauxHeader = pack s
   where
