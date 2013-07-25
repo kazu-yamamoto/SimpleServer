@@ -1,22 +1,19 @@
 {-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE CPP, ForeignFunctionInterface #-}
 
-import Control.Concurrent (forkIO, threadWaitRead, threadWaitWrite)
-import Control.Monad (when, forever, liftM)
+import Control.Concurrent (forkIO)
+import Control.Monad (forever)
 import qualified Data.ByteString as B
 import Data.ByteString.Char8 (ByteString, pack)
-import Data.ByteString.Internal (toForeignPtr)
-import Foreign
-import Foreign.C.Types
 import Network.Socket (Socket(..), SocketType(..), AddrInfoFlag(..),
                        SocketOption(..), accept, addrAddress, addrFamily,
                        addrFlags, bindSocket, defaultProtocol, defaultHints,
-                       fdSocket, getAddrInfo, listen, setSocketOption, socket)
-import Network.Socket.Internal (throwSocketErrorIfMinus1RetryMayBlock)
+                       getAddrInfo, listen, setSocketOption, socket)
 import Network.Socket.ByteString (recv, sendAll)
 import System.Environment (getArgs)
 
 
+main :: IO ()
 main = do
   listenSock <- startListenSock
   forever $ do
