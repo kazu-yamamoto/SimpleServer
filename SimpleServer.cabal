@@ -18,19 +18,23 @@ cabal-version:       >=1.8
 executable SimpleServer
   main-is: SimpleServer.hs
   build-depends:       base, bytestring, network
+  other-modules:       ListenSock, Http, Send, Recv
   ghc-options: -O2 -threaded -rtsopts -funbox-strict-fields -Wall
 
 executable SimpleServerByteString
   main-is: SimpleServerByteString.hs
   build-depends:       base, bytestring, network
+  other-modules:       ListenSock, Http, Send
   ghc-options: -O2 -threaded -rtsopts -funbox-strict-fields -Wall
 
 executable SimpleServerByteString2
   main-is: SimpleServerByteString2.hs
   build-depends:       base, bytestring, network
+  other-modules:       ListenSock, Http
   ghc-options: -O2 -threaded -rtsopts -funbox-strict-fields -Wall
 
 executable SimpleServerByteString3
   main-is: SimpleServerByteString3.hs
   build-depends:       base, bytestring, network
+  other-modules:       ListenSock, Http
   ghc-options: -O2 -threaded -rtsopts -funbox-strict-fields -Wall
