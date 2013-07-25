@@ -18,19 +18,19 @@ cabal-version:       >=1.8
 executable SimpleServer
   main-is: SimpleServer.hs
   build-depends:       base, bytestring, network
-  ghc-options: -O2 -threaded -rtsopts -funbox-strict-fields
+  ghc-options: -O2 -threaded -rtsopts -funbox-strict-fields -Wall
 
 executable SimpleServerByteString
   main-is: SimpleServerByteString.hs
   build-depends:       base, bytestring, network
-  ghc-options: -O2 -threaded -rtsopts -funbox-strict-fields
+  ghc-options: -O2 -threaded -rtsopts -funbox-strict-fields -Wall
 
 executable SimpleServerByteString2
   main-is: SimpleServerByteString2.hs
   build-depends:       base, bytestring, network
-  ghc-options: -O2 -threaded -rtsopts -funbox-strict-fields
+  ghc-options: -O2 -threaded -rtsopts -funbox-strict-fields -Wall
 
 executable SimpleServerByteString3
   main-is: SimpleServerByteString3.hs
   build-depends:       base, bytestring, network
-  ghc-options: -O2 -threaded -rtsopts -funbox-strict-fields
+  ghc-options: -O2 -threaded -rtsopts -funbox-strict-fields -Wall
