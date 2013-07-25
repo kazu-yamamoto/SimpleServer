@@ -15,7 +15,7 @@ import Network.Socket (Socket(..), SocketType(..), AddrInfoFlag(..),
 import Network.Socket.Internal (throwSocketErrorIfMinus1RetryMayBlock)
 import System.Environment (getArgs)
 
-
+main :: IO ()
 main = do
   listenSock <- startListenSock
   forever $ do
@@ -98,9 +98,9 @@ socketRecv :: Socket         -- ^ Connected socket
               -> Ptr Word8
               -> Int            -- ^ Maximum number of bytes to receive
               -> IO Int
-socketRecv socket ptr !nbytes
+socketRecv sock ptr !nbytes
     | nbytes < 0 = error "socketRecv"
-    | otherwise  = recvInner (fdSocket socket) nbytes ptr
+    | otherwise  = recvInner (fdSocket sock) nbytes ptr
 
 recvInner :: CInt -> Int -> Ptr Word8 -> IO Int
 recvInner s !nbytes ptr =
